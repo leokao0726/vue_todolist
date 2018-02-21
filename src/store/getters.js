@@ -1,8 +1,6 @@
-export const getTodos = state => {
-	return state.todos;
-}
-
-
+// export const getTodos = state => {
+// 	return state.todos;
+// }
 
 //getters 無法傳值？
 export const getDone = state => {

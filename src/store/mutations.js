@@ -21,9 +21,43 @@ export const mutations = {
       content: newTodo,
       done: false
     });
-
     todoKey++;
+    console.log(`ADD: ${todoKey}`);
   },
+
+  [types.TOGGLE_TODO] (state, key) {
+    for(var i in state.todos){
+      var item = state.todos[i];
+      if(item.key === key){
+        item.done = !item.done;
+        console.log('TOGGLE_TODO:', item.content, 'done?', item.done);
+        break
+      }
+    }
+  },
+
+  [types.DELETE_TODO] (state, key) {
+    for (var i in state.todos) {
+      var item = state.todos[i];
+      if (item.key === key){
+         console.log('DELETE_TODO:', item.content, ', index?', i);
+        state.todos.splice(i, 1);
+        break
+      }
+    }
+  },
+
+  [types.UPDATE_TODO] (state, obj) {
+    for(var i in state.todos) {
+      var item = state.todos[i];
+      if (item.key === obj.key) {
+        console.log('UPDATE_TODO:', item.content, ' to →', obj.change);
+        // 找到 todo 更新 content
+        state.todos[i].content = obj.change;
+        break;
+      }
+    }
+  }
 };
 
 
